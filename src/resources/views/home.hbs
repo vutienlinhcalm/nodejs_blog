@@ -1,3 +1,22 @@
+<div class="mt-4">
+    <div class="row">
+        {{#each courses}}
+            <div class="col-sm-6 col-lg-4">
+                <div class="card mt-2">
+                    <a class="" href="/courses/{{this.slug}}">
+                        <img src="{{this.image}}" class="card-img-top" alt="">
+                    </a>
+                    <div class="card-body">
+                        <a class="" href="/courses/{{this.slug}}">
+                        <h5 class="card-title">{{this.name}}</h5>
+                        </a>
+                        <p class="card-text">{{this.description}}</p>
+                        <a href="#" class="btn btn-primary">Học Ngay</a>
+                    </div>
+                </div>
+            </div>
 
-
-<h1>Home play</h1>
+        {{/each}}
+       
+    </div>
+</div>
