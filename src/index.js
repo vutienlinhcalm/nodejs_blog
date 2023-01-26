@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
+const methodOverride = require('method-override');
 const exphbs = require('express-handlebars');
 const port = 3002;
 const app = express();
@@ -9,9 +10,9 @@ const db = require('./config/db');
 // connect to db
 db.connect();
 
-app.use(express.static(path.join(__dirname, 'public')));
 // http logger
 app.use(morgan('combined'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(
     express.urlencoded({
@@ -19,11 +20,16 @@ app.use(
     }),
 );
 app.use(express.json());
+
+app.use(methodOverride('_method'));
 // http template engine
-          app.engine(
+app.engine(
     'hbs',
     exphbs({
-        extname: 'hbs',
+        extname: '.hbs',
+        helpers:{
+            sum:(a,b) => a + b,
+        }
     }),
 );
 
